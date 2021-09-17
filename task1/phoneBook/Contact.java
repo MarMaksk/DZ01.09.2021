@@ -2,8 +2,11 @@ package task1.phoneBook;
 
 import task1.exception.EmailException;
 import task1.exception.NumberException;
+import task1.exception.RequiredDetailsException;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Contact implements Serializable {
@@ -21,57 +24,74 @@ public class Contact implements Serializable {
     private static final String WORK_NUMBER = "WorkNumber";
     private static final String MOBILE_NUMBER = "MobileNumber";
     private static final String FAX = "Fax";
-    private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
     {
         this.list.clear();
     }
 
-    public Contact(String name, String surName, String nickname, String email, Date dayOfBirthday, PhoneBook phoneBook) throws EmailException {
-        this.name = name;
-        this.surName = surName;
-        this.nickname = nickname;
-        validateEmail(email);
-        this.dayOfBirthday = dayOfBirthday;
-        this.phoneBook = phoneBook;
-    }
-
-    public Contact(String name, String surName, String nickname, String email, PhoneBook phoneBook) throws EmailException {
-        this.name = name;
-        this.surName = surName;
-        this.nickname = nickname;
-        validateEmail(email);
-        this.phoneBook = phoneBook;
-    }
-
-    public Contact(String name, String nickname, String email, Date dayOfBirthday, PhoneBook phoneBook) throws EmailException {
-        this.name = name;
-        this.nickname = nickname;
-        this.email = email;
-        this.dayOfBirthday = dayOfBirthday;
-        validateEmail(email);
-        this.phoneBook = phoneBook;
-    }
-
-    public Contact(String name, String surName, PhoneBook phoneBook) {
-        this.name = name;
-        this.surName = surName;
-        this.phoneBook = phoneBook;
-    }
-
-    public Contact(String name, PhoneBook phoneBook) {
-        this.name = name;
-        this.phoneBook = phoneBook;
-    }
-
     public Contact() {
     }
 
-    private void validateEmail(String email) throws EmailException {
-        if (email.matches(EMAIL_REGEX))
-            this.email = email;
-        else
-            throw new EmailException();
+    public static class Builder {
+        private Contact newContact;
+        private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        private static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+        public Builder() {
+            newContact = new Contact();
+        }
+
+        public Builder withName(String name) {
+            newContact.name = name;
+            return this;
+        }
+
+        public Builder withSurName(String surName) {
+            newContact.surName = surName;
+            return this;
+        }
+
+        public Builder withNickname(String nickname) {
+            newContact.nickname = nickname;
+            return this;
+        }
+
+        public Builder withEmail(String email) throws EmailException {
+            validateEmail(email);
+            return this;
+        }
+
+        public Builder withDayOfBirthday(String dayOfBirthday) throws ParseException {
+            newContact.dayOfBirthday = sdf.parse(dayOfBirthday);
+            return this;
+        }
+
+        public Builder withPhoneBook(PhoneBook phoneBook) {
+            newContact.phoneBook = phoneBook;
+            return this;
+        }
+
+        public Contact build() throws RequiredDetailsException {
+            Contact contact;
+            if (validateContact())
+                contact = newContact;
+            else
+                throw new RequiredDetailsException();
+            return contact;
+        }
+
+        private boolean validateContact() {
+            return (newContact.name != null && newContact.name.trim().length() > 0
+                    && newContact.phoneBook != null);
+        }
+
+        private void validateEmail(String email) throws EmailException {
+            if (email.matches(EMAIL_REGEX))
+                newContact.email = email;
+            else
+                throw new EmailException();
+        }
+
     }
 
     private List<Long> getListNumber(String typeNumber, Long number, List<Long> list, PhoneBook phoneBook) throws NumberException {
