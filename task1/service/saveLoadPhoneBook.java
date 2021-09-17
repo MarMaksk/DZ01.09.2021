@@ -1,9 +1,7 @@
-package com.company.task1.service;
+package task1.service;
 
-import com.company.task1.phoneBook.Contact;
-import com.company.task1.phoneBook.PhoneBook;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import task1.phoneBook.Contact;
+import task1.phoneBook.PhoneBook;
 
 import java.io.*;
 
@@ -47,6 +45,6 @@ public class saveLoadPhoneBook implements Serializable {
                 e.printStackTrace();
             }
         }
-        throw new FileNotFoundException("File not found");
+        throw new FileNotFoundException("File " + tableName + ".dat " + "not found");
     }
 }

@@ -1,7 +1,8 @@
-package com.company.task1.exception;
+package task1.exception;
 
 public class EmailException extends Exception {
     public EmailException() {
+        super("Uncorrect email");
     }
 
     public EmailException(String message) {

@@ -1,7 +1,7 @@
-package com.company.task3;
+package task3;
 
-import com.company.task3.operation.FileOperation;
-import com.company.task3.operation.MathOperation;
+import task3.operation.FileOperation;
+import task3.operation.MathOperation;
 
 import java.io.*;
 

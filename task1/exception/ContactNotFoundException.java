@@ -1,7 +1,8 @@
-package com.company.task1.exception;
+package task1.exception;
 
 public class ContactNotFoundException extends Exception{
     public ContactNotFoundException() {
+        super("Contact not found");
     }
 
     public ContactNotFoundException(String message) {

@@ -1,7 +1,7 @@
-package com.company.task1.phoneBook;
+package task1.phoneBook;
 
-import com.company.task1.exception.EmailException;
-import com.company.task1.exception.NumberException;
+import task1.exception.EmailException;
+import task1.exception.NumberException;
 
 import java.io.Serializable;
 import java.util.*;
@@ -71,7 +71,7 @@ public class Contact implements Serializable {
         if (email.matches(EMAIL_REGEX))
             this.email = email;
         else
-            throw new EmailException("Uncorrect email");
+            throw new EmailException();
     }
 
     private List<Long> getListNumber(String typeNumber, Long number, List<Long> list, PhoneBook phoneBook) throws NumberException {

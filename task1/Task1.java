@@ -1,13 +1,13 @@
-package com.company.task1;
+package task1;
 
 
-import com.company.task1.exception.ContactNotFoundException;
-import com.company.task1.phoneBook.Contact;
-import com.company.task1.exception.EmailException;
-import com.company.task1.exception.NumberException;
-import com.company.task1.phoneBook.PhoneBook;
-import com.company.task1.service.Service;
-import com.company.task1.service.saveLoadPhoneBook;
+import task1.exception.ContactNotFoundException;
+import task1.phoneBook.Contact;
+import task1.exception.EmailException;
+import task1.exception.NumberException;
+import task1.phoneBook.PhoneBook;
+import task1.service.Service;
+import task1.service.saveLoadPhoneBook;
 
 import java.io.IOException;
 import java.text.ParseException;

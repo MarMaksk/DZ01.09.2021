@@ -1,8 +1,8 @@
-package com.company.task1.service;
+package task1.service;
 
-import com.company.task1.exception.ContactNotFoundException;
-import com.company.task1.phoneBook.Contact;
-import com.company.task1.phoneBook.PhoneBook;
+import task1.exception.ContactNotFoundException;
+import task1.phoneBook.Contact;
+import task1.phoneBook.PhoneBook;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class Service {
         for (Contact pb : phoneBook.getContacts())
             if (pb.getName().equals(name))
                 return pb;
-        throw new ContactNotFoundException("Contact not found");
+        throw new ContactNotFoundException();
     }
 
     public Contact searchContact(Long number, PhoneBook phoneBook) throws ContactNotFoundException {
@@ -25,6 +25,6 @@ public class Service {
                 for (Long ls : entry.getValue())
                     if (ls.equals(number))
                         return pb;
-        throw new ContactNotFoundException("Contact not found");
+        throw new ContactNotFoundException();
     }
 }

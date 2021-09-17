@@ -1,6 +1,6 @@
-package com.company.task3.operation;
+package task3.operation;
 
-import com.company.task3.UserId;
+import task3.UserId;
 
 import java.io.*;
 

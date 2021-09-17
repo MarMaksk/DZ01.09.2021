@@ -1,4 +1,4 @@
-package com.company.task1.exception;
+package task1.exception;
 
 public class NumberException extends Exception {
     public NumberException() {

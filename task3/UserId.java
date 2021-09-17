@@ -1,4 +1,4 @@
-package com.company.task3;
+package task3;
 
 public class UserId {
     private int id;

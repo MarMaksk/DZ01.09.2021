@@ -1,4 +1,4 @@
-package com.company.task1.phoneBook;
+package task1.phoneBook;
 
 
 import java.io.*;
